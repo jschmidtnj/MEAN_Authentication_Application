@@ -22,8 +22,20 @@ db.customers.insert({first_name: "Josh"}); - this inserts users of first_name "J
 db.customers.find(); - prints out all of the customers
 db.customers.find().pretty(); - This prints the customers out nicely
 db.customers.insert([{}, {}]); - This inserts two users into the customers, with parameters defined in the {}
-db.customers.remove({firstname:"Josh"}) - this removes any customers with the given parameter
-db.customers.update({firstname:"Josh"}, {lastname:"Schmi"}) - this updates anyone with the first name Josh to have that last name
-db.customers.update({firstname:"Josh"}, {$set:{lastname:"Schmi"}}) - this keeps whatever was there previously and adds the last name on
-db.customers.update({firstname:"Josh"}, {$inc:{age:5}}) - this increments the age by 5 for all Josh's
-db.customers.update({firstname:"Josh"}, {$unset:{age:1}}) - this gets rid of the age in all Josh's
+db.customers.remove({firstname:"Josh"}); - this removes any customers with the given parameter
+db.customers.remove({firstname:"Josh"}, {justOne: true}); - this removes just one
+db.customers.update({firstname:"Josh"}, {firstname:"Josh", lastname:"Schmi"}); - this updates anyone with the first name Josh to have that last name
+db.customers.update({firstname:"Josh"}, {$set:{lastname:"Schmi"}}); - this keeps whatever was there previously and adds the last name on
+db.customers.update({firstname:"Josh"}, {$inc:{age:5}}); - this increments the age by 5 for all Josh's
+db.customers.update({firstname:"Josh"}, {$unset:{age:1}}); - this gets rid of the age in all Josh's
+db.customers.update({firstname:"Josh"}, {firstname:"Josh", lastname:"Schmi"}, {upsert: true}); - this updates Josh but if there is no Josh it makes one
+db.customers.update({firstname:"Josh"}, {$rename:{age:old}}); - this changes the category of age to old of all Josh's
+copy from text file to db to bulk write a lot of users with db.customers.insert([{},{},{},{},{}...]);
+db.customers.find({$or:[{}, {}]}); finds customers with one parameter or the other
+db.customers.find({age: {$lt: 40}}); finds customers less than 40
+db.customers.find({"address.city":"Boston"}); finds in address object city of Boston
+db.customers.find().sort({last_name:-1}); sorts in opposite of alphabetical order, from Z to A
+db.customers.find().count(); number of people in database
+db.customers.find({gender: "male"}).count(); number of people in database
+db.customers.find().limit(4); prints out the first 4 in the database
+db.customers.find().forEach(function(doc){print("Customer Name: " + doc.first_name)}); prints the first name for each customer
