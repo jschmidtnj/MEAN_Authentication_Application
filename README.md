@@ -16,6 +16,9 @@ Look here for instructions on how to get everything installed for node.js via np
 Mongodb:
 show dbs
 use <> //whatever db you want - if it's not there it is added, and you are now in that database
+db
+show colletions
+
 db.createUser({}); - creates user with json data
 db.createCollection('String'); - this makes a collection of individuals
 db.customers.insert({first_name: "Josh"}); - this inserts users of first_name "Josh" into the collection customers
