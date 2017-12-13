@@ -13,3 +13,17 @@ Look here for more info. on mongoDB quickstarting https://www.youtube.com/watch?
 
 Look here for instructions on how to get everything installed for node.js via npm: https://www.youtube.com/watch?v=uONz0lEWft0&t=5s
 
+Mongodb:
+show dbs
+use <> //whatever db you want - if it's not there it is added, and you are now in that database
+db.createUser({}); - creates user with json data
+db.createCollection('String'); - this makes a collection of individuals
+db.customers.insert({first_name: "Josh"}); - this inserts users of first_name "Josh" into the collection customers
+db.customers.find(); - prints out all of the customers
+db.customers.find().pretty(); - This prints the customers out nicely
+db.customers.insert([{}, {}]); - This inserts two users into the customers, with parameters defined in the {}
+db.customers.remove({firstname:"Josh"}) - this removes any customers with the given parameter
+db.customers.update({firstname:"Josh"}, {lastname:"Schmi"}) - this updates anyone with the first name Josh to have that last name
+db.customers.update({firstname:"Josh"}, {$set:{lastname:"Schmi"}}) - this keeps whatever was there previously and adds the last name on
+db.customers.update({firstname:"Josh"}, {$inc:{age:5}}) - this increments the age by 5 for all Josh's
+db.customers.update({firstname:"Josh"}, {$unset:{age:1}}) - this gets rid of the age in all Josh's
